@@ -1,0 +1,1004 @@
+/* ============================================================
+   L1 — a tiny adventure, made with pyaar
+   Strawberry-milk sticker-sheet design system
+   ============================================================ */
+
+:root{
+  --cream:#FFF3EA;
+  --paper:#FFFDF7;
+  --ink:#4A2B3A;
+  --ink-soft:#8A6275;
+  --berry:#FF6B93;
+  --berry-deep:#E44A78;
+  --blush:#FFD9E3;
+  --honey:#F6B756;
+  --honey-soft:#FBE3B0;
+  --leaf:#69B884;
+  --leaf-deep:#3E8E63;
+  --sky:#BFE3F2;
+  --sky-deep:#7FB8D6;
+  --night:#2C2140;
+  --night-2:#463367;
+  --star:#FFE9A8;
+  --gold:#F2B23E;
+  --gold-hi:#FFDE8A;
+  --gold-deep:#C8862A;
+  --white:#fff;
+
+  --font-display:"Baloo 2","Segoe Print","Comic Sans MS",cursive;
+  --font-body:"Mali","Segoe Print","Comic Sans MS",cursive;
+  --font-hand:"Caveat","Ink Free","Segoe Script",cursive;
+
+  --line:3px solid var(--ink);
+  --r-lg:26px;
+  --r-md:18px;
+  --pop:0 6px 0 rgba(74,43,58,.9);
+  --pop-sm:0 4px 0 rgba(74,43,58,.9);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--cream);
+  min-height:100vh;
+  overflow-x:hidden;
+  line-height:1.55;
+}
+
+img,svg{max-width:100%;display:block}
+
+a{color:var(--berry-deep)}
+
+::selection{background:var(--berry);color:#fff}
+
+:focus-visible{
+  outline:3px dashed var(--berry-deep);
+  outline-offset:4px;
+  border-radius:8px;
+}
+
+/* page enter */
+@keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.page{animation:pageIn .55s cubic-bezier(.22,.9,.36,1) both}
+
+/* ---------------------------------------------------------
+   Type
+--------------------------------------------------------- */
+.eyebrow{
+  display:inline-block;
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.8rem;
+  letter-spacing:.22em;
+  text-transform:uppercase;
+  color:var(--berry-deep);
+  background:var(--white);
+  border:var(--line);
+  border-radius:999px;
+  padding:.35em 1.1em;
+  box-shadow:var(--pop-sm);
+}
+
+.title{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(2rem,5.5vw,3.4rem);
+  line-height:1.12;
+  letter-spacing:-.01em;
+}
+
+.hl{color:var(--berry-deep)}
+
+.sub{
+  font-size:clamp(1rem,2.4vw,1.2rem);
+  font-weight:500;
+  color:var(--ink-soft);
+  max-width:34em;
+}
+
+.hand{font-family:var(--font-hand)}
+
+/* sticker letters — chubby outlined display words */
+.sticker-word{
+  font-family:var(--font-display);
+  font-weight:800;
+  -webkit-text-stroke:2px var(--ink);
+  paint-order:stroke fill;
+  text-shadow:0 2px 0 var(--ink),0 4px 0 rgba(74,43,58,.35);
+}
+.sticker-word span{
+  display:inline-block;
+  animation:letterBob 2.8s ease-in-out infinite;
+  animation-delay:calc(var(--i,0)*.12s);
+}
+.sticker-word .c1{color:var(--berry)}
+.sticker-word .c2{color:var(--honey)}
+.sticker-word .c3{color:var(--leaf)}
+.sticker-word .c4{color:var(--sky-deep)}
+@keyframes letterBob{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-9px) rotate(3deg)}
+}
+
+/* ---------------------------------------------------------
+   Buttons — squishy plush
+--------------------------------------------------------- */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:.5em;
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:1.06rem;
+  padding:.8em 1.7em;
+  border:var(--line);
+  border-radius:999px;
+  background:var(--paper);
+  color:var(--ink);
+  cursor:pointer;
+  text-decoration:none;
+  box-shadow:var(--pop);
+  transition:transform .12s ease,box-shadow .12s ease,background .2s;
+  user-select:none;
+  touch-action:manipulation;
+}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 0 rgba(74,43,58,.9)}
+.btn:active{transform:translateY(4px);box-shadow:0 1px 0 rgba(74,43,58,.9)}
+
+.btn-love{background:var(--berry);color:#fff}
+.btn-love:hover{background:var(--berry-deep)}
+.btn-honey{background:var(--honey)}
+.btn-ghost{background:transparent;box-shadow:none;border-color:transparent;color:var(--ink-soft);font-weight:700}
+.btn-ghost:hover{color:var(--berry-deep);transform:none}
+
+.btn-big{font-size:clamp(1.15rem,3vw,1.5rem);padding:.9em 2em}
+
+/* dodging "no" button */
+.btn-no{position:relative;transition:transform .28s cubic-bezier(.3,1.4,.5,1),opacity .3s,font-size .3s}
+.btn-no.gave-up{background:var(--blush);font-size:.85rem;padding:.6em 1.2em}
+
+/* ---------------------------------------------------------
+   Sticker cards — die-cut white edge
+--------------------------------------------------------- */
+.sticker-card{
+  background:var(--paper);
+  border:var(--line);
+  border-radius:var(--r-lg);
+  box-shadow:0 0 0 6px var(--white),0 0 0 8px rgba(74,43,58,.14),0 18px 34px -16px rgba(74,43,58,.35);
+  padding:clamp(1.4rem,4vw,2.4rem);
+}
+
+.tape{
+  position:absolute;
+  top:-14px;left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  width:110px;height:30px;
+  background:rgba(255,183,203,.75);
+  border:2px solid rgba(74,43,58,.25);
+  border-radius:4px;
+}
+
+/* ---------------------------------------------------------
+   Layout scaffolding
+--------------------------------------------------------- */
+.scene{
+  position:relative;
+  min-height:100vh;
+  min-height:100svh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  padding:clamp(1.2rem,4vw,3rem);
+  gap:clamp(.9rem,2.5vw,1.4rem);
+  overflow:hidden;
+}
+
+.stack{display:flex;flex-direction:column;align-items:center;gap:clamp(.8rem,2vw,1.2rem);position:relative;z-index:5}
+
+.corner-nav{
+  position:fixed;
+  top:14px;left:14px;
+  z-index:60;
+  display:flex;gap:8px;
+}
+.chip{
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.82rem;
+  background:var(--paper);
+  border:var(--line);
+  border-radius:999px;
+  padding:.4em 1em;
+  color:var(--ink);
+  text-decoration:none;
+  box-shadow:var(--pop-sm);
+}
+.chip:hover{background:var(--blush)}
+
+#muteBtn{
+  position:fixed;top:14px;right:14px;z-index:60;
+  width:44px;height:44px;border-radius:50%;
+  border:var(--line);background:var(--paper);
+  font-size:1.15rem;cursor:pointer;box-shadow:var(--pop-sm);
+  display:flex;align-items:center;justify-content:center;
+}
+#muteBtn:active{transform:translateY(3px);box-shadow:none}
+
+/* ---------------------------------------------------------
+   Ambient: clouds, floating hearts, sparkles
+--------------------------------------------------------- */
+.cloud{
+  position:absolute;
+  background:var(--white);
+  border:var(--line);
+  border-radius:999px;
+  opacity:.9;
+  animation:cloudDrift 26s linear infinite;
+}
+.cloud::before,.cloud::after{
+  content:"";position:absolute;background:inherit;border:inherit;border-radius:50%;
+}
+.cloud::before{width:55%;height:120%;left:12%;top:-58%}
+.cloud::after{width:38%;height:85%;right:14%;top:-38%}
+@keyframes cloudDrift{
+  from{transform:translateX(-16vw)}
+  to{transform:translateX(116vw)}
+}
+
+.heart-float{
+  position:fixed;
+  bottom:-40px;
+  z-index:1;
+  pointer-events:none;
+  animation:heartRise linear forwards;
+}
+@keyframes heartRise{
+  0%{transform:translateY(0) rotate(-8deg);opacity:0}
+  12%{opacity:.9}
+  100%{transform:translateY(-112vh) rotate(14deg);opacity:0}
+}
+
+.sparkle{
+  position:absolute;
+  color:var(--gold);
+  animation:sparkleTwinkle 1.8s ease-in-out infinite;
+  pointer-events:none;
+  font-size:1.1rem;
+}
+@keyframes sparkleTwinkle{
+  0%,100%{opacity:.15;transform:scale(.7) rotate(0)}
+  50%{opacity:1;transform:scale(1.15) rotate(20deg)}
+}
+
+/* character sticker placement helper */
+.sticker{filter:none}
+.sticker svg{width:100%;height:auto}
+.sticker.bob{animation:stickerBob 3.4s ease-in-out infinite}
+@keyframes stickerBob{
+  0%,100%{transform:translateY(0) rotate(-2deg)}
+  50%{transform:translateY(-10px) rotate(2deg)}
+}
+
+/* burst hearts on click of yes */
+.burst-heart{
+  position:fixed;z-index:80;pointer-events:none;
+  animation:burstFly .9s ease-out forwards;
+}
+@keyframes burstFly{
+  from{transform:translate(0,0) scale(.6) rotate(0);opacity:1}
+  to{transform:translate(var(--bx),var(--by)) scale(1.3) rotate(var(--br));opacity:0}
+}
+
+/* heart-wipe page transition */
+#wipe{
+  position:fixed;inset:0;z-index:100;
+  display:flex;align-items:center;justify-content:center;
+  background:var(--berry);
+  clip-path:circle(0% at 50% 50%);
+  pointer-events:none;
+  transition:clip-path .38s cubic-bezier(.5,0,.8,.4);
+}
+#wipe.in{clip-path:circle(75% at 50% 50%);pointer-events:all}
+#wipe svg{width:90px;animation:wipePulse .5s ease-in-out infinite alternate}
+@keyframes wipePulse{from{transform:scale(.9)}to{transform:scale(1.1)}}
+
+/* ============================================================
+   3D — THE PROMISE RING
+   band = cylinder of segments, gem billboards on top
+   ============================================================ */
+.ring-stage{
+  position:relative;
+  width:230px;height:250px;
+  display:flex;align-items:flex-end;justify-content:center;
+  perspective:900px;
+  margin-inline:auto;
+}
+.ring-tilt{
+  transform-style:preserve-3d;
+  transform:rotateX(-10deg);
+  width:100%;height:190px;
+  position:relative;
+}
+.ring3d{
+  position:absolute;
+  left:50%;top:56%;
+  width:0;height:0;
+  transform-style:preserve-3d;
+  animation:ringSpin 9s linear infinite;
+}
+@keyframes ringSpin{from{transform:rotateY(0)}to{transform:rotateY(360deg)}}
+
+.ring-seg{
+  position:absolute;
+  left:0;top:0;
+  width:13px;height:18px;
+  margin:-9px 0 0 -6.5px;
+  background:linear-gradient(180deg,var(--gold-hi) 0%,var(--gold) 52%,var(--gold-deep) 100%);
+  border-radius:4px;
+  box-shadow:inset 0 0 3px rgba(255,255,255,.55);
+}
+
+.gem-mount{
+  position:absolute;
+  left:0;top:0;
+  transform-style:preserve-3d;
+}
+.gem{
+  position:absolute;
+  left:-28px;top:-28px;
+  width:56px;height:56px;
+  transform-style:preserve-3d;
+}
+.gem-face{
+  position:absolute;inset:0;
+  clip-path:polygon(50% 0,100% 38%,50% 100%,0 38%);
+  background:linear-gradient(160deg,#ffffff 0%,var(--sky) 34%,#8ED0EA 60%,#DFF4FF 100%);
+  border:2px solid rgba(74,43,58,.55);
+  box-shadow:inset 0 0 14px rgba(255,255,255,.9);
+}
+.gem-face.f2{transform:rotateY(90deg)}
+.gem-glow{
+  position:absolute;
+  left:50%;top:-8px;
+  width:120px;height:120px;
+  margin-left:-60px;
+  transform:translateZ(-46px);
+  background:radial-gradient(circle,rgba(255,233,168,.7) 0%,rgba(255,233,168,0) 62%);
+  pointer-events:none;
+  animation:glowPulse 2.6s ease-in-out infinite;
+}
+@keyframes glowPulse{0%,100%{opacity:.5;scale:.9}50%{opacity:1;scale:1.05}}
+
+.ring-shadow{
+  position:absolute;
+  bottom:2px;left:50%;
+  width:150px;height:24px;
+  transform:translateX(-50%) translateZ(-50px);
+  background:radial-gradient(ellipse,rgba(74,43,58,.28) 0%,transparent 68%);
+  animation:shadowBreathe 9s linear infinite;
+}
+@keyframes shadowBreathe{0%,100%{scale:1}50%{scale:.86}}
+
+.ring-stage .sparkle{z-index:5}
+
+.ring-stage.mini{width:150px;height:160px}
+.ring-stage.mini .ring-tilt{height:120px;transform:rotateX(14deg) scale(.62)}
+
+/* ============================================================
+   3D — THE ENVELOPE  (index hero)
+   ============================================================ */
+.env-stage{
+  perspective:1200px;
+  width:min(400px,86vw);
+  aspect-ratio:40/27;
+  margin-inline:auto;
+  position:relative;
+  z-index:6;
+}
+.env{
+  position:absolute;inset:0;
+  transform-style:preserve-3d;
+  transform:rotateX(9deg) rotateY(-7deg);
+  animation:envFloat 4.5s ease-in-out infinite;
+  cursor:pointer;
+}
+@keyframes envFloat{
+  0%,100%{translate:0 0}
+  50%{translate:0 -13px}
+}
+.env:hover .env-hint{opacity:1}
+
+.env-back{
+  position:absolute;inset:0;
+  background:#FFE4EC;
+  border:var(--line);
+  border-radius:12px;
+  transform:translateZ(-6px);
+  box-shadow:0 26px 40px -18px rgba(74,43,58,.4);
+}
+.env-liner{
+  position:absolute;inset:4% 3%;
+  clip-path:polygon(0 0,100% 0,50% 58%);
+  background:repeating-linear-gradient(45deg,var(--blush) 0 12px,#ffd0dd 12px 24px);
+  transform:translateZ(-5px);
+}
+.env-letter{
+  position:absolute;
+  left:6%;right:6%;top:5%;bottom:8%;
+  background:var(--paper);
+  border:var(--line);
+  border-radius:8px;
+  transform:translateZ(-2px);
+  transition:transform .9s cubic-bezier(.34,1.3,.5,1) .45s;
+  padding:14px 16px;
+  overflow:hidden;
+  font-family:var(--font-hand);
+  font-size:clamp(1.05rem,3.4vw,1.4rem);
+  line-height:1.35;
+  text-align:left;
+  color:var(--ink);
+}
+.env-letter .xo{color:var(--berry-deep);font-weight:700}
+.env.open .env-letter{transform:translateZ(30px) translateY(-88%) rotate(-2deg) scale(1.05)}
+
+.env-pocket{
+  position:absolute;inset:0;
+  clip-path:polygon(0 2%,50% 52%,100% 2%,100% 100%,0 100%);
+  background:linear-gradient(180deg,#FFD3DF 0%,#FFC3D4 100%);
+  border:var(--line);
+  border-radius:12px;
+  transform:translateZ(2px);
+}
+.env-pocket::after{
+  content:"";
+  position:absolute;inset:0;
+  clip-path:polygon(0 2%,50% 52%,2% 100%,0 100%);
+  background:rgba(74,43,58,.06);
+}
+.env-flap{
+  position:absolute;
+  left:0;right:0;top:0;
+  height:56%;
+  clip-path:polygon(0 0,100% 0,50% 100%);
+  background:linear-gradient(180deg,#FF9FB8 0%,#FF8AA9 100%);
+  border:var(--line);
+  border-bottom:none;
+  border-radius:12px 12px 0 0;
+  transform-origin:top center;
+  transform:translateZ(4px) rotateX(0);
+  transition:transform .8s cubic-bezier(.6,.05,.3,1);
+  backface-visibility:visible;
+}
+.env.open .env-flap{transform:translateZ(-4px) rotateX(168deg)}
+
+.env-seal{
+  position:absolute;
+  left:50%;top:44%;
+  width:64px;height:64px;
+  transform:translate(-50%,-50%) translateZ(8px);
+  background:radial-gradient(circle at 35% 30%,#FF8AA9,var(--berry-deep) 70%);
+  border:var(--line);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.6rem;
+  color:#fff;
+  box-shadow:0 4px 0 rgba(74,43,58,.5);
+  transition:transform .4s,opacity .4s;
+}
+.env.open .env-seal{transform:translate(-50%,-50%) translateZ(8px) scale(0);opacity:0}
+
+.env-hint{
+  position:absolute;
+  bottom:-46px;left:50%;
+  transform:translateX(-50%);
+  font-family:var(--font-display);
+  font-weight:700;
+  font-size:.9rem;
+  color:var(--ink-soft);
+  white-space:nowrap;
+  opacity:.85;
+  transition:opacity .3s;
+  animation:hintNudge 1.6s ease-in-out infinite;
+}
+@keyframes hintNudge{0%,100%{translate:-50% 0}50%{translate:-50% -5px}}
+
+/* ============================================================
+   3D — GIFT BOX with hinged lid (letter ending)
+   ============================================================ */
+.box-stage{
+  position:relative;
+  width:250px;height:250px;
+  margin-inline:auto;
+  perspective:760px;
+  z-index:6;
+}
+.gift-box{
+  position:absolute;
+  left:50%;bottom:12px;
+  translate:-50% 0;
+  width:174px;height:112px;
+  transform-style:preserve-3d;
+  cursor:pointer;
+}
+.gift-base{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,#FF7FA2 0%,var(--berry-deep) 100%);
+  border:var(--line);
+  border-radius:10px 10px 16px 16px;
+  box-shadow:0 16px 26px -12px rgba(74,43,58,.45);
+}
+.gift-base::before{
+  content:"";
+  position:absolute;top:0;bottom:0;left:50%;
+  width:26px;translate:-50% 0;
+  background:var(--honey);
+  border-inline:3px solid var(--ink);
+}
+.gift-inside{
+  position:absolute;
+  left:10px;right:10px;top:5px;height:30px;
+  background:radial-gradient(circle at 50% 130%,#FFF0F5,var(--blush));
+  border:var(--line);
+  border-radius:8px;
+}
+.gift-inside::after{
+  content:"";
+  position:absolute;left:14%;right:14%;top:50%;height:3px;
+  background:rgba(74,43,58,.35);
+  border-radius:2px;
+}
+.gift-lid{
+  position:absolute;
+  left:-10px;right:-10px;top:-24px;height:38px;
+  background:linear-gradient(180deg,#FF9FB8,var(--berry));
+  border:var(--line);
+  border-radius:10px;
+  transform-origin:50% 90%;
+  transition:transform .85s cubic-bezier(.5,-.25,.3,1.15);
+  z-index:3;
+}
+.gift-lid::before{
+  content:"";
+  position:absolute;top:0;bottom:0;left:50%;
+  width:26px;translate:-50% 0;
+  background:var(--honey);
+  border-inline:3px solid var(--ink);
+}
+.gift-bow{
+  position:absolute;
+  left:50%;top:-16px;translate:-50% 0;
+  width:66px;height:26px;
+  z-index:4;
+}
+.gift-bow::before,.gift-bow::after{
+  content:"";
+  position:absolute;top:0;
+  width:28px;height:22px;
+  background:var(--honey);
+  border:3px solid var(--ink);
+  border-radius:50%;
+}
+.gift-bow::before{left:0;transform:rotate(-16deg)}
+.gift-bow::after{right:0;transform:rotate(16deg)}
+.gift-bow i{
+  position:absolute;
+  left:50%;top:3px;translate:-50% 0;
+  width:15px;height:15px;
+  background:var(--honey);
+  border:3px solid var(--ink);
+  border-radius:50%;
+  z-index:2;
+}
+.gift-box.open .gift-lid{transform:rotateX(118deg) translateZ(8px)}
+.box-ring-slot{
+  position:absolute;
+  left:50%;bottom:104px;
+  translate:-50% 0;
+  transform:translateY(34px) scale(.4);
+  transform-origin:bottom center;
+  opacity:0;
+  transition:opacity .5s .4s,transform .95s cubic-bezier(.3,1.4,.5,1) .35s;
+  pointer-events:none;
+  z-index:2;
+}
+.box-stage.open .box-ring-slot{
+  opacity:1;
+  transform:translateY(-30px) scale(.74);
+  z-index:8;
+}
+.box-hint{
+  position:absolute;
+  bottom:-26px;left:50%;
+  transform:translateX(-50%);
+  font-family:var(--font-display);
+  font-weight:700;font-size:.88rem;color:var(--ink-soft);
+  white-space:nowrap;
+  animation:hintNudge 1.6s ease-in-out infinite;
+}
+
+/* ============================================================
+   PAGE — INDEX
+   ============================================================ */
+.pg-index{background:linear-gradient(180deg,#FFEFF4 0%,var(--cream) 55%,#FFE9DB 100%)}
+.pg-index .corner-sticker{
+  position:absolute;
+  bottom:-8px;
+  width:clamp(110px,17vw,170px);
+  z-index:4;
+}
+.pg-index .corner-sticker.l{left:clamp(4px,3vw,40px);rotate:-6deg}
+.pg-index .corner-sticker.r{right:clamp(4px,3vw,40px);rotate:6deg}
+.pg-index .cta-row{min-height:64px}
+.pg-index .cta-row .btn{opacity:0;pointer-events:none;transform:translateY(12px);transition:opacity .5s .9s,transform .5s .9s}
+.pg-index.opened .cta-row .btn{opacity:1;pointer-events:all;transform:none}
+
+/* ============================================================
+   PAGE — JOURNEY (quiz)
+   ============================================================ */
+.pg-journey{background:linear-gradient(180deg,#FFF0E4 0%,var(--cream) 60%,#FFEAF0 100%)}
+.quiz-wrap{width:min(560px,94vw);position:relative;z-index:6}
+.quiz-card{
+  position:relative;
+  background:
+    repeating-linear-gradient(180deg,transparent 0 34px,rgba(127,184,214,.25) 34px 36px),
+    var(--paper);
+  border:var(--line);
+  border-radius:var(--r-lg);
+  box-shadow:0 0 0 6px var(--white),0 0 0 8px rgba(74,43,58,.14),0 18px 34px -16px rgba(74,43,58,.35);
+  padding:clamp(1.6rem,5vw,2.6rem) clamp(1.2rem,4vw,2.2rem) clamp(1.8rem,5vw,2.4rem);
+  min-height:300px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1.1rem;
+}
+.quiz-card.swap{animation:cardSwap .45s ease}
+@keyframes cardSwap{
+  0%{transform:rotate(0) scale(1);opacity:1}
+  45%{transform:rotate(-3deg) scale(.92);opacity:0}
+  55%{transform:rotate(3deg) scale(.92);opacity:0}
+  100%{transform:rotate(0) scale(1);opacity:1}
+}
+.quiz-q{
+  font-family:var(--font-display);
+  font-weight:800;
+  font-size:clamp(1.3rem,4vw,1.8rem);
+  line-height:1.25;
+}
+.quiz-opts{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center;position:relative;width:100%;min-height:70px;align-items:center}
+.quiz-note{font-family:var(--font-hand);font-size:1.25rem;color:var(--berry-deep);min-height:1.6em}
+.progress-hearts{display:flex;gap:10px;font-size:1.5rem;z-index:6}
+.progress-hearts span{opacity:.25;transition:opacity .3s,transform .3s}
+.progress-hearts span.on{opacity:1;transform:scale(1.2)}
+.quiz-buddy{
+  position:absolute;
+  right:-30px;top:-74px;
+  width:120px;
+  rotate:8deg;
+  z-index:7;
+  transition:transform .3s;
+}
+.quiz-buddy.react{animation:buddyJump .5s ease}
+@keyframes buddyJump{
+  0%,100%{transform:translateY(0)}
+  40%{transform:translateY(-16px) rotate(-6deg)}
+}
+
+/* ============================================================
+   PAGE — CHOOSE (three doors)
+   ============================================================ */
+.pg-choose{background:linear-gradient(180deg,#FFEFF6 0%,var(--cream) 50%,#F2EBFF 100%)}
+.doors{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:clamp(1rem,3vw,1.8rem);
+  width:min(980px,94vw);
+  z-index:6;
+}
+.door{
+  position:relative;
+  display:flex;flex-direction:column;
+  border:var(--line);
+  border-radius:22px 22px var(--r-lg) var(--r-lg);
+  background:var(--paper);
+  box-shadow:0 0 0 5px var(--white),0 0 0 7px rgba(74,43,58,.14),0 16px 30px -14px rgba(74,43,58,.35);
+  text-decoration:none;
+  color:var(--ink);
+  overflow:visible;
+  transition:transform .22s cubic-bezier(.3,1.3,.5,1),box-shadow .22s;
+}
+.door:hover,.door:focus-visible{transform:translateY(-10px) rotate(-1.2deg)}
+.door:nth-child(2):hover{rotate:0deg}
+.door-art{
+  position:relative;
+  border-radius:19px 19px 0 0;
+  border-bottom:var(--line);
+  aspect-ratio:5/4;
+  overflow:hidden;
+  display:flex;align-items:center;justify-content:center;
+}
+.door-art svg{width:88%;height:auto}
+.door-garden .door-art{background:linear-gradient(180deg,#D8F1E3 0%,#BCE6CE 100%)}
+.door-stars .door-art{background:linear-gradient(180deg,var(--night) 0%,var(--night-2) 100%)}
+.door-letter .door-art{background:linear-gradient(180deg,#FFE3EC 0%,#FFD3E0 100%)}
+.door-label{
+  padding:1rem 1.1rem 1.2rem;
+  display:flex;flex-direction:column;gap:.2rem;
+}
+.door-label b{font-family:var(--font-display);font-weight:800;font-size:1.18rem}
+.door-label i{font-style:normal;font-family:var(--font-hand);font-size:1.12rem;color:var(--ink-soft)}
+.door-tag{
+  position:absolute;
+  z-index:4;
+  top:-15px;left:50%;
+  transform:translateX(-50%) rotate(-3deg);
+  font-family:var(--font-display);
+  font-weight:700;font-size:.75rem;
+  letter-spacing:.14em;
+  background:var(--honey);
+  border:var(--line);
+  border-radius:999px;
+  padding:.28em .9em;
+  box-shadow:var(--pop-sm);
+  white-space:nowrap;
+}
+.door-peek{
+  position:absolute;
+  top:-52px;right:8px;
+  width:86px;
+  z-index:3;
+  opacity:0;
+  transform:translateY(14px) rotate(8deg);
+  transition:opacity .25s,transform .3s cubic-bezier(.3,1.4,.5,1);
+  pointer-events:none;
+}
+.door:hover .door-peek,.door:focus-visible .door-peek{opacity:1;transform:translateY(0) rotate(8deg)}
+
+/* ============================================================
+   ENDINGS — shared proposal block
+   ============================================================ */
+.proposal-zone{
+  position:relative;
+  z-index:8;
+  width:min(620px,94vw);
+}
+.proposal-q{
+  font-family:var(--font-hand);
+  font-weight:700;
+  font-size:clamp(1.9rem,6vw,3rem);
+  line-height:1.2;
+}
+.answer-row{
+  position:relative;
+  display:flex;
+  gap:1rem;
+  justify-content:center;
+  align-items:center;
+  flex-wrap:wrap;
+  min-height:96px;
+  margin-top:1rem;
+}
+#yesBtn{transition:transform .3s cubic-bezier(.3,1.4,.5,1),box-shadow .12s,background .2s}
+
+/* ============================================================
+   PAGE — GARDEN ENDING
+   ============================================================ */
+.pg-garden{background:linear-gradient(180deg,#CDEBF7 0%,#E6F6EE 42%,#BCE6CE 100%)}
+.pg-garden .sun{
+  position:absolute;top:6vh;right:8vw;
+  width:110px;height:110px;border-radius:50%;
+  background:radial-gradient(circle at 38% 34%,#FFF3C4,var(--honey) 72%);
+  border:var(--line);
+  box-shadow:0 0 60px 18px rgba(246,183,86,.45);
+  animation:sunSpin 30s linear infinite;
+}
+.pg-garden .sun::before{content:"";position:absolute;inset:-26px;border-radius:50%;border:3px dashed rgba(246,183,86,.7)}
+@keyframes sunSpin{to{rotate:360deg}}
+.garden-ground{
+  position:absolute;bottom:0;left:0;right:0;height:26vh;
+  background:linear-gradient(180deg,#8FD0A8 0%,#69B884 100%);
+  border-top:var(--line);
+}
+.garden-row{
+  position:absolute;bottom:2vh;left:0;right:0;
+  display:flex;justify-content:space-around;
+  pointer-events:none;
+}
+.garden-row svg{width:clamp(54px,9vw,96px);height:auto}
+.garden-row.back{bottom:18vh;opacity:.85}
+.garden-row.back svg{width:clamp(40px,6.5vw,70px)}
+.butterfly{
+  position:absolute;
+  font-size:1.5rem;
+  animation:flutter 9s ease-in-out infinite;
+  z-index:4;
+}
+@keyframes flutter{
+  0%{transform:translate(0,0) rotate(-8deg)}
+  25%{transform:translate(9vw,-7vh) rotate(8deg)}
+  50%{transform:translate(3vw,-13vh) rotate(-6deg)}
+  75%{transform:translate(-7vw,-5vh) rotate(6deg)}
+  100%{transform:translate(0,0) rotate(-8deg)}
+}
+.couple-row{
+  display:flex;align-items:flex-end;justify-content:center;gap:clamp(.5rem,3vw,2.2rem);
+  z-index:6;
+}
+.couple-row .kneel{width:clamp(130px,20vw,190px)}
+.couple-row .shy{width:clamp(120px,18vw,175px)}
+
+/* ============================================================
+   PAGE — STARS ENDING
+   ============================================================ */
+.pg-stars{background:linear-gradient(180deg,#1E1631 0%,var(--night) 46%,var(--night-2) 100%);color:var(--paper)}
+.pg-stars .sub{color:#CBBBE8}
+.pg-stars .chip{background:var(--night-2);color:var(--paper);border-color:rgba(255,255,255,.7)}
+.star{
+  position:absolute;
+  width:4px;height:4px;border-radius:50%;
+  background:var(--star);
+  animation:starTwinkle ease-in-out infinite;
+}
+@keyframes starTwinkle{
+  0%,100%{opacity:.18;transform:scale(.7)}
+  50%{opacity:1;transform:scale(1.25)}
+}
+.moon{
+  position:absolute;top:7vh;left:9vw;
+  width:96px;height:96px;border-radius:50%;
+  background:radial-gradient(circle at 62% 38%,#FFF7DC,var(--star) 70%);
+  border:3px solid rgba(255,247,220,.8);
+  box-shadow:0 0 46px 12px rgba(255,233,168,.35);
+}
+.moon::before,.moon::after{
+  content:"";position:absolute;border-radius:50%;background:rgba(74,43,58,.12);
+}
+.moon::before{width:22px;height:22px;left:20px;top:34px}
+.moon::after{width:13px;height:13px;left:52px;top:58px}
+.shooting-star{
+  position:absolute;
+  top:12vh;left:-12vw;
+  width:130px;height:3px;
+  background:linear-gradient(90deg,transparent,var(--star));
+  border-radius:999px;
+  rotate:-18deg;
+  animation:shoot 7.5s ease-in 2.2s infinite;
+  opacity:0;
+}
+.shooting-star::after{
+  content:"✦";position:absolute;right:-9px;top:-11px;color:var(--star);font-size:1.1rem;
+}
+@keyframes shoot{
+  0%{translate:0 0;opacity:0}
+  4%{opacity:1}
+  16%{translate:120vw 34vh;opacity:0}
+  100%{translate:120vw 34vh;opacity:0}
+}
+.hill{
+  position:absolute;bottom:-8vh;left:-10vw;right:-10vw;height:34vh;
+  background:#221838;
+  border-radius:50% 50% 0 0/90% 90% 0 0;
+  border-top:3px solid rgba(255,233,168,.35);
+}
+.constellation{
+  position:absolute;
+  top:9vh;right:7vw;
+  width:clamp(130px,19vw,210px);
+  opacity:.95;
+}
+.constellation .cline{
+  stroke:var(--star);stroke-width:2;stroke-dasharray:5 7;fill:none;opacity:.8;
+  stroke-dashoffset:400;
+  animation:constDraw 3.5s ease-out .8s forwards;
+}
+@keyframes constDraw{to{stroke-dashoffset:0}}
+.constellation .cdot{fill:#fff;animation:starTwinkle 2.2s ease-in-out infinite}
+.pg-stars .couple-row .shy,.pg-stars .couple-row .kneel{filter:drop-shadow(0 0 18px rgba(255,233,168,.25))}
+.pg-stars #yesBtn{background:var(--star);color:var(--ink);border-color:var(--star)}
+.pg-stars .btn-no{background:var(--night-2);color:var(--paper);border-color:rgba(255,255,255,.65)}
+
+/* ============================================================
+   PAGE — LETTER ENDING
+   ============================================================ */
+.pg-letter{background:linear-gradient(180deg,#FFE9DB 0%,var(--cream) 45%,#FFE3EC 100%)}
+.desk-doodle{position:absolute;font-size:1.6rem;opacity:.5;rotate:-10deg}
+.letter-sheet{
+  position:relative;
+  width:min(620px,94vw);
+  background:
+    repeating-linear-gradient(180deg,transparent 0 36px,rgba(127,184,214,.28) 36px 38px),
+    var(--paper);
+  border:var(--line);
+  border-radius:14px;
+  box-shadow:0 0 0 6px var(--white),0 0 0 8px rgba(74,43,58,.14),0 22px 40px -18px rgba(74,43,58,.4);
+  padding:clamp(1.6rem,5vw,2.6rem) clamp(1.3rem,5vw,2.6rem);
+  text-align:left;
+  font-family:var(--font-hand);
+  font-size:clamp(1.25rem,3.6vw,1.6rem);
+  line-height:1.5;
+  z-index:6;
+}
+.letter-sheet .greet{font-size:1.3em;color:var(--berry-deep);font-weight:700}
+.letter-sheet p{margin-bottom:.9em;opacity:0;transform:translateY(10px);transition:opacity .7s,transform .7s}
+.letter-sheet p.show{opacity:1;transform:none}
+.letter-sheet .sign{text-align:right;color:var(--berry-deep);font-weight:700}
+.letter-heartdoodle{position:absolute;top:-26px;right:22px;width:58px;rotate:12deg}
+
+/* ============================================================
+   PAGE — YES / CELEBRATION
+   ============================================================ */
+.pg-yes{background:linear-gradient(180deg,#FFE3EC 0%,#FFF0E4 50%,#FFE9F6 100%)}
+#confettiCanvas{position:fixed;inset:0;pointer-events:none;z-index:40}
+.yes-title{
+  font-size:clamp(2.6rem,8vw,4.6rem);
+}
+.hug-wrap{width:clamp(190px,30vw,270px);z-index:6}
+.license{
+  position:relative;
+  width:min(480px,92vw);
+  text-align:left;
+  z-index:6;
+}
+.license h3{
+  font-family:var(--font-display);
+  font-weight:800;
+  text-align:center;
+  font-size:1.25rem;
+  letter-spacing:.06em;
+  border-bottom:2px dashed rgba(74,43,58,.35);
+  padding-bottom:.5em;margin-bottom:.8em;
+}
+.license dl{display:grid;grid-template-columns:auto 1fr;gap:.28em .9em;font-size:1.02rem}
+.license dt{font-weight:700;color:var(--ink-soft)}
+.license dd{font-weight:600}
+.license .stamp{
+  position:absolute;
+  right:14px;bottom:12px;
+  width:96px;height:96px;
+  border:3px double var(--berry-deep);
+  border-radius:50%;
+  color:var(--berry-deep);
+  font-family:var(--font-display);
+  font-weight:800;font-size:.62rem;
+  letter-spacing:.14em;
+  display:flex;align-items:center;justify-content:center;
+  text-align:center;
+  rotate:-14deg;
+  opacity:.85;
+  padding:10px;
+}
+.license .sign-line{
+  margin-top:1em;
+  font-family:var(--font-hand);
+  font-size:1.5rem;
+  color:var(--berry-deep);
+}
+.end-links{display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;z-index:6}
+
+/* ============================================================
+   Responsive + prefs
+   ============================================================ */
+@media (max-width:760px){
+  .doors{grid-template-columns:1fr;width:min(420px,94vw)}
+  .door-art{aspect-ratio:7/4}
+  .door-peek{top:-46px;width:72px}
+  .quiz-buddy{right:-8px;top:-66px;width:92px}
+  .couple-row{gap:.4rem}
+  .env-hint{bottom:-40px}
+  .license .stamp{width:82px;height:82px;font-size:.55rem}
+}
+
+@media (max-width:420px){
+  .ring-stage{scale:.85}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001s !important;animation-iteration-count:1 !important;transition-duration:.15s !important}
+  .ring3d{animation:none;transform:rotateY(24deg)}
+  .heart-float,.shooting-star{display:none}
+  .env{animation:none}
+}

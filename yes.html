@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>SHE SAID HAAN! 💖</title>
+<meta name="theme-color" content="#FFE3EC">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z' fill='%23FF6B93' stroke='%234A2B3A' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body class="page pg-yes" data-hearts>
+
+  <canvas id="confettiCanvas" aria-hidden="true"></canvas>
+
+  <main class="scene">
+    <div class="stack">
+      <span class="eyebrow">💖 BEST DAY EVER 💖</span>
+
+      <h1 class="title yes-title">SHE SAID
+        <span class="sticker-word"><span class="c1" style="--i:0">H</span><span class="c2" style="--i:1">A</span><span
+          class="c3" style="--i:2">A</span><span class="c4" style="--i:3">N</span><span class="c1" style="--i:4">!</span></span>
+      </h1>
+
+      <p class="sub" id="viaLine" style="font-weight:600">Officially meri girlfriend. Hamesha ke liye. ∞</p>
+
+      <div class="hug-wrap bob" data-sticker="pair-hug"></div>
+
+      <div class="ring-stage mini" data-ring></div>
+
+      <div class="license sticker-card">
+        <h3>💖 OFFICIAL GIRLFRIEND LICENSE 💖</h3>
+        <dl>
+          <dt>Holder</dt><dd>Meri Jaan 💘</dd>
+          <dt>Issued by</dt><dd>Tumhara Pagal</dd>
+          <dt>Status</dt><dd>Taken ✔ (permanently)</dd>
+          <dt>Valid till</dt><dd>Hamesha ke liye ∞</dd>
+          <dt>Perks</dt><dd>Unlimited hugs · ice-cream on demand · 24/7 good-morning texts</dd>
+          <dt>Issued on</dt><dd id="issueDate"></dd>
+        </dl>
+        <div class="sign-line">signed: tumhara pagal ♡</div>
+        <div class="stamp">100% PYAAR ✦ APPROVED ✦</div>
+      </div>
+
+      <div class="end-links">
+        <a class="chip" data-nav href="index.html">↺ phir se khelein</a>
+        <a class="chip" data-nav href="ending-garden.html">🌹 bageecha ending</a>
+        <a class="chip" data-nav href="ending-stars.html">🌙 taare ending</a>
+        <a class="chip" data-nav href="ending-letter.html">💌 khat ending</a>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/stickers.js?v=3" defer></script>
+  <script src="js/shared.js?v=3" defer></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const via = new URLSearchParams(location.search).get("via");
+      const map = {
+        garden: "Haan kaha — gulaabon ke beech 🌹",
+        stars: "Haan kaha — taaron ke neeche ⭐",
+        letter: "Haan kaha — ek khat ke zariye 💌",
+      };
+      if (map[via]) {
+        document.getElementById("viaLine").textContent =
+          "Officially meri girlfriend. Hamesha ke liye. ∞  ·  " + map[via];
+      }
+      document.getElementById("issueDate").textContent =
+        new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
+
+      L1.confetti(document.getElementById("confettiCanvas"));
+      L1.startMelody();
+      setTimeout(() => L1.tada(), 350);
+    });
+  </script>
+</body>
+</html>

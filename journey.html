@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kuch Sawaal 🥺</title>
+<meta name="theme-color" content="#FFF0E4">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z' fill='%23FF6B93' stroke='%234A2B3A' stroke-width='1.6'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css?v=3">
+</head>
+<body class="page pg-journey" data-hearts>
+
+  <nav class="corner-nav">
+    <a class="chip" data-nav href="index.html">← wapas</a>
+  </nav>
+
+  <main class="scene">
+    <div class="stack">
+      <span class="eyebrow">STEP 1 · KUCH SAWAAL PEHLE</span>
+      <h1 class="title">Pehle thodi si <span class="hl">testing</span> 😌</h1>
+      <p class="sub">Girlfriend banne se pehle ek chhota sa interview toh banta hai, my love.</p>
+      <div class="progress-hearts" aria-label="Progress"><span>♥</span><span>♥</span><span>♥</span></div>
+    </div>
+
+    <div class="quiz-wrap">
+      <div class="quiz-buddy" data-sticker="bear-blush" id="buddy"></div>
+      <div class="quiz-card" id="card">
+        <div class="quiz-q" id="q"></div>
+        <div class="quiz-opts" id="opts"></div>
+        <div class="quiz-note" id="note"></div>
+      </div>
+    </div>
+  </main>
+
+  <script src="js/stickers.js?v=3" defer></script>
+  <script src="js/shared.js?v=3" defer></script>
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const steps = [
+        { q: "Sach sach batana… do you find me cute? 🥺",
+          opts: [
+            { t: "Bilkul, obviously 😍", note: "Sahi jawab. Smart bhi ho 💖" },
+            { t: "Umm… thoda sa?", flip: "BOHOT ZYADA 😍", note: "Correct answer install kar diya 😌" },
+          ]},
+        { q: "Aur batao — meri favourite jagah kaunsi hai?",
+          opts: [
+            { t: "Tumhare paas 🫶", note: "100% sahi ✔" },
+            { t: "Wherever you are ✨", note: "Bilkul sahi ✔" },
+            { t: "Bas… tumhare saath 🥰", note: "Trick question tha — har option sahi hai 😌💘" },
+          ]},
+        { q: "Okay okay. Ready ho kuch important ke liye?",
+          opts: [
+            { t: "Haan, ready! 💪", note: "Chalo phir… 💫" },
+            { t: "Nahi 🙈", dodge: true },
+          ]},
+      ];
+
+      const card = document.getElementById("card"),
+            qEl = document.getElementById("q"),
+            optsEl = document.getElementById("opts"),
+            noteEl = document.getElementById("note"),
+            buddy = document.getElementById("buddy"),
+            hearts = document.querySelectorAll(".progress-hearts span");
+      let step = 0, locked = false;
+
+      function render() {
+        locked = false;
+        qEl.textContent = steps[step].q;
+        noteEl.textContent = "";
+        optsEl.innerHTML = "";
+        steps[step].opts.forEach((o) => {
+          const b = document.createElement("button");
+          b.type = "button";
+          b.className = "btn " + (o.dodge ? "btn-no" : "btn-honey");
+          b.textContent = o.t;
+          if (o.dodge) miniDodge(b);
+          else b.addEventListener("click", () => pick(b, o));
+          optsEl.appendChild(b);
+        });
+      }
+
+      function pick(b, o) {
+        if (locked) return;
+        if (o.flip && !b.dataset.flipped) {
+          b.dataset.flipped = "1";
+          b.textContent = o.flip;
+          b.classList.remove("btn-honey");
+          b.classList.add("btn-love");
+          L1.pop();
+          setTimeout(() => done(o), 750);
+          return;
+        }
+        done(o);
+      }
+
+      function done(o) {
+        if (locked) return;
+        locked = true;
+        noteEl.textContent = o.note;
+        L1.chime();
+        buddy.classList.remove("react"); void buddy.offsetWidth; buddy.classList.add("react");
+        hearts[step].classList.add("on");
+        setTimeout(next, 1100);
+      }
+
+      function next() {
+        step++;
+        card.classList.remove("swap"); void card.offsetWidth; card.classList.add("swap");
+        setTimeout(() => { step < steps.length ? render() : finale(); }, 230);
+      }
+
+      function finale() {
+        qEl.textContent = "Paas ho gayi — full marks 💯";
+        noteEl.textContent = "Ab asli cheez. Teen raaste tumhara wait kar rahe hain…";
+        optsEl.innerHTML = "";
+        const a = document.createElement("a");
+        a.className = "btn btn-love btn-big";
+        a.href = "choose.html";
+        a.setAttribute("data-nav", "");
+        a.textContent = "Raasta chuno →";
+        optsEl.appendChild(a);
+      }
+
+      function miniDodge(b) {
+        let n = 0;
+        const move = () => {
+          if (b.classList.contains("gave-up")) return;
+          if (n >= 3) {
+            b.classList.add("gave-up");
+            b.textContent = "Haan fine, ready 😅";
+            b.style.transform = "none";
+            return;
+          }
+          n++;
+          b.style.transform = `translate(${L1.rand(-90, 90)}px, ${L1.rand(-28, 28)}px) rotate(${L1.rand(-8, 8)}deg)`;
+          b.textContent = ["Pakka? 🥺", "Soch lo…", "Achha?? 😤"][n - 1];
+          L1.sad();
+        };
+        b.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") move(); });
+        b.addEventListener("click", () => {
+          if (b.classList.contains("gave-up")) done({ note: "Chalo phir… 💫" });
+          else move();
+        });
+      }
+
+      render();
+    });
+  </script>
+</body>
+</html>
