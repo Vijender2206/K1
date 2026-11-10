@@ -1002,3 +1002,106 @@ a{color:var(--berry-deep)}
   .heart-float,.shooting-star{display:none}
   .env{animation:none}
 }
+
+/* Story pages: one pace, a few detours, and room for the punchline. */
+[hidden]{display:none !important}
+.story-scene{padding:88px clamp(18px,4vw,48px) 64px;gap:26px}
+.story-scene>.btn,.story-scene>.chip,.story-scene>.cta-row{position:relative;z-index:8}
+.story-scene>.moon,.story-scene>.hill,.story-scene>.sun,.story-scene>.garden-ground,.story-scene>.garden-row{pointer-events:none}
+.story-heading{max-width:760px;gap:18px}
+.story-heading .sub{max-width:35em}
+.story-caption{font-family:var(--font-display);font-size:.88rem;color:var(--ink-soft);max-width:36em;position:relative;z-index:6}
+.story-aside{font-size:.96rem;color:var(--ink-soft);line-height:1.7}
+.story-prose{font-size:clamp(1rem,2.5vw,1.13rem);line-height:1.8}
+.story-reply{font-family:var(--font-hand);font-weight:600;font-size:clamp(1.35rem,3.5vw,1.65rem);line-height:1.4;color:var(--berry-deep);min-height:3em}
+.story-card{position:relative;z-index:6;width:min(630px,100%);display:flex;flex-direction:column;align-items:center;gap:20px}
+.story-card .quiz-opts{min-height:0}
+.btn[aria-pressed="true"]{background:var(--blush);box-shadow:0 2px 0 var(--ink);transform:translateY(3px)}
+.btn:disabled{cursor:default;background:var(--blush);color:var(--ink-soft);box-shadow:none;transform:none}
+.scene-buddy{width:116px;margin:-12px auto -8px}
+.banter-card{gap:20px;min-height:410px}
+.banter-card .story-reply{min-height:3.3em}
+.banter-card .quiz-q:focus{outline:none}
+.banter-card .quiz-opts{min-height:0}
+.pg-index .story-heading .title{font-size:clamp(2.1rem,5.5vw,3.4rem)}
+.pg-index .story-caption{max-width:65%;margin-top:6px}
+.pg-index .env-letter{font-size:clamp(1rem,3vw,1.25rem)}
+.pg-index .env-stage{transition:margin-top .6s}
+.pg-index.opened .env-stage{margin-top:clamp(135px,40vw,200px)}
+.pg-index .env-letter .xo{display:block;margin-top:.5em}
+.pg-index>.cloud{pointer-events:none;opacity:.28}
+.pg-journey .quiz-buddy{top:-20px;right:8px;width:76px}
+.ambient-stars{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.pg-stars .story-heading .hl{color:var(--blush)}
+.pg-stars .story-caption.night-caption{color:#D9CBEA}
+.pg-stars .sticker-card{color:var(--ink)}
+.pg-stars .story-heading,.pg-stars .line-card{z-index:6}
+.pg-midnight .moon{width:70px;height:70px;top:80px;left:5vw;opacity:.7}
+.line-card{position:relative;width:min(640px,100%);display:flex;flex-direction:column;align-items:center;gap:24px;min-height:350px}
+.line-setup{font-family:var(--font-display);font-size:clamp(1.5rem,4.4vw,2.1rem);font-weight:800;line-height:1.25}
+.line-payoff{font-family:var(--font-hand);font-size:clamp(1.5rem,4vw,1.9rem);line-height:1.35;min-height:110px;width:100%}
+.line-payoff .story-aside{font-family:var(--font-body);margin-top:16px;font-size:.9rem}
+.pg-chai{background:linear-gradient(155deg,#FBE3B0,#FFF3EA 45%,#FFD9E3)}
+.cafe-card{position:relative;width:min(650px,100%);z-index:6;display:flex;flex-direction:column;align-items:center;gap:24px}
+.cafe-top{width:100%;display:flex;align-items:center;justify-content:space-between;border-bottom:2px dashed var(--ink-soft);padding-bottom:14px;gap:18px}
+.cafe-sign{font-family:var(--font-display);font-weight:800;font-size:.9rem;letter-spacing:.1em;text-align:left;max-width:22em}
+.cafe-cup{font-size:2.7rem;rotate:-9deg}
+.drink-options{display:flex;flex-wrap:wrap;justify-content:center;gap:12px}
+.drink-options .btn{font-size:1rem;padding:.7em 1em}
+.cafe-receipt{background:#FFF9E8;padding:24px;width:min(360px,100%);text-align:left;border-block:2px dashed var(--ink-soft);font-size:.92rem;rotate:-2deg;box-shadow:2px 6px 10px #4A2B3A0D}
+.cafe-receipt>span{font-family:var(--font-display);font-size:.72rem;font-weight:800;letter-spacing:.1em}
+.cafe-receipt p{margin-top:14px}
+.receipt-total{margin-top:18px;padding-top:12px;border-top:1px dashed var(--ink-soft);font-weight:700}
+.garden-story{padding-bottom:150px}
+.garden-story .sun{width:75px;height:75px;right:5vw;top:85px;opacity:.65}
+.garden-story .garden-ground{height:160px}
+.garden-story .garden-row{bottom:0}
+.rooftop-card{gap:22px}
+.rooftop-doodle{font-family:var(--font-hand);font-size:2.6rem;color:var(--berry-deep);letter-spacing:.18em}
+.revealed-note{border-top:2px dashed var(--blush);padding-top:20px;font-family:var(--font-hand);font-size:1.65rem;line-height:1.4}
+.revealed-note .story-aside{font-family:var(--font-body);margin-top:18px}
+.story-letter p{opacity:1;transform:none}
+.story-letter p:last-child{margin-bottom:0}
+.story-letter{width:min(660px,100%);font-size:clamp(1.3rem,3.5vw,1.7rem)}
+.ps-note{position:relative;z-index:6;width:min(610px,100%)}
+.ps-note .hand{font-size:1.65rem;line-height:1.4}
+.ps-note .story-aside{margin-top:16px}
+.pg-invitation{background:linear-gradient(160deg,#FFD9E3,#FFF3EA 60%,#FBE3B0)}
+.invitation-card{position:relative;z-index:6;width:min(680px,100%);display:flex;flex-direction:column;align-items:center;gap:20px}
+.invitation-card .proposal-q{margin-top:2px}
+.invitation-card .answer-row{margin-top:0;min-height:0;gap:16px}
+.invitation-card .btn-big{font-size:clamp(1.05rem,3vw,1.2rem);padding:.9em 1.4em}
+.invitation-card .story-aside{max-width:34em}
+.farewell-note{font-size:clamp(1.45rem,4vw,1.85rem);color:var(--berry-deep);max-width:28em;position:relative;z-index:6}
+.farewell-buddy{width:150px}
+.date-ticket{position:relative;z-index:6;width:min(600px,100%);text-align:left;overflow:hidden}
+.ticket-label{font-family:var(--font-display);font-size:.75rem;font-weight:700;letter-spacing:.12em;color:var(--berry-deep)}
+.date-ticket h2{font-family:var(--font-display);font-size:clamp(1.35rem,4vw,1.7rem);line-height:1.2;margin:12px 0 22px}
+.date-ticket dl{display:grid;grid-template-columns:90px 1fr;gap:12px 20px;border-top:2px dashed var(--ink-soft);padding-top:22px;font-size:.95rem}
+.date-ticket dt{font-weight:700;color:var(--ink-soft)}
+.ticket-footer{border-top:2px dashed var(--ink-soft);margin-top:24px;padding-top:16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px;font-family:var(--font-display);font-size:.8rem}
+.pg-yes .hug-wrap{width:170px}
+@media(max-width:760px){
+  .story-scene{gap:24px}
+  .story-heading .eyebrow{font-size:.64rem;letter-spacing:.12em;max-width:95%;white-space:normal}
+  .story-heading .title{font-size:clamp(2rem,7vw,3rem)}
+  .pg-choose .doors{gap:36px}
+  .pg-midnight .moon,.garden-story .sun{top:84px;width:46px;height:46px;opacity:.3}
+  .pg-midnight .moon::before,.pg-midnight .moon::after{display:none}
+  .banter-card{min-height:440px}
+  .banter-card .quiz-opts{flex-direction:column;width:100%;align-items:stretch}
+  .story-reply{min-height:0}
+  .scene-buddy{width:100px}
+  .date-ticket dl{grid-template-columns:75px 1fr;gap:12px;font-size:.88rem}
+  .invitation-card .answer-row{width:100%;flex-direction:column;align-items:stretch}
+  .invitation-card .btn{width:100%}
+  .line-card{padding:28px 20px;gap:22px}
+  .pg-index .story-caption{max-width:76%}
+  .pg-index .corner-sticker{width:84px;bottom:0}
+  .pg-index>.cloud{display:none}
+  .pg-journey .quiz-buddy{top:-12px;right:6px;width:66px}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .pg-index .env-letter,.pg-index .cta-row .btn{transition-delay:0s}
+}

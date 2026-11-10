@@ -3,92 +3,37 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Ek Aakhri Khat 💌</title>
-<meta name="theme-color" content="#FFE9DB">
+<title>The Note I Almost Didn’t Give You 💌</title>
+<meta name="theme-color" content="#FFF3EA">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z' fill='%23FF6B93' stroke='%234A2B3A' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
-<body class="page pg-letter" data-hearts>
+<body class="page pg-letter" data-hearts="">
 
-  <nav class="corner-nav">
-    <a class="chip" data-nav href="choose.html">← raasta badlo</a>
-  </nav>
 
-  <span class="desk-doodle" style="left:6%;top:12%">☕</span>
-  <span class="desk-doodle" style="right:7%;top:20%;rotate:12deg">✏️</span>
-  <span class="desk-doodle" style="left:9%;bottom:12%">📎</span>
 
-  <main class="scene">
-    <div class="stack">
-      <span class="eyebrow">ENDING 3 · EK AAKHRI KHAT</span>
+<nav class="corner-nav" aria-label="Story navigation"><a class="chip" data-nav href="choose.html">← another route</a></nav>
+<main class="scene story-scene">
+<div class="stack story-heading"><span class="eyebrow">the folded-note detour</span><h1 class="title">For once, I let<br><span class="hl">the paper do the talking.</span></h1><p class="sub">Imagine a little note slipped across the café table. Folded twice. Extremely casual. Obviously.</p></div>
+<article class="letter-sheet story-letter">
+  <div class="tape" aria-hidden="true"></div>
+  <p class="greet">Hey, you.</p>
+  <p>I had a better line planned. Something clever enough to make you roll your eyes, then smile when you thought I wasn’t looking.</p>
+  <p>But here’s the part I keep editing around: I like talking to you. The big stories, the tiny updates, the “nothing happened today” conversations that somehow become the best bit of the day.</p>
+  <p>And yes, I’d like a few more of those in person. Preferably across a café table, while you explain why stealing my fries is apparently different from ordering your own.</p>
+  <p class="sign">— the one who will order extra fries ♡</p>
+</article>
+<button class="btn btn-honey" type="button" data-reveal="letterPS" data-after="P.S. delivered ♡" aria-controls="letterPS" aria-expanded="false">There’s a P.S. on the back…</button>
+<div class="sticker-card ps-note" id="letterPS" aria-live="polite" hidden><p class="hand">P.S. Are you a note in the margin? Because I came here for the story, but you’re the bit I keep going back to.</p><p class="story-aside">P.P.S. Yes, I practised folding this. Please act impressed.</p></div>
+<a class="btn btn-love" data-nav href="invitation.html?via=letter">One thing left to say →</a>
+<a class="chip" data-nav href="choose.html">Read another little scene</a>
+</main>
 
-      <div class="letter-sheet">
-        <div class="tape"></div>
-        <svg class="letter-heartdoodle" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z"
-            fill="#FF6B93" stroke="#4A2B3A" stroke-width="1.6"/>
-        </svg>
-        <p class="greet">Meri pyaari jaan,</p>
-        <p>Kuch cheezein type karne se nahi, likhne se samajh aati hain. Toh yeh raha — mera sabse honest khat.</p>
-        <p>Tumhare saath ordinary din bhi thode extraordinary lagte hain. Chai zyada tasty lagti hai, jokes zyada funny, aur raat ki baatein… kabhi khatam hi nahi honi chahiye.</p>
-        <p>Main kaafi time se ek sawaal apne dil mein leke ghoom raha hoon. Aaj himmat kar raha hoon —</p>
-        <p class="sign">— tumhara pagal ♡</p>
-      </div>
-
-      <div class="box-stage" id="boxStage">
-        <div class="gift-box" id="giftBox" role="button" tabindex="0" aria-label="Open the gift box">
-          <div class="gift-base"></div>
-          <div class="gift-inside"></div>
-          <div class="gift-lid"><div class="gift-bow"><i></i></div></div>
-        </div>
-        <div class="box-ring-slot"><div class="ring-stage mini" data-ring></div></div>
-        <div class="box-hint" id="boxHint">ab box kholo 🎁</div>
-      </div>
-
-      <div class="proposal-zone sticker-card" id="propZone"
-        style="opacity:0;transform:translateY(16px);transition:opacity .6s,transform .6s;pointer-events:none">
-        <p class="proposal-q">Toh bolo… <span class="hl">girlfriend banogi meri?</span> 💍</p>
-        <div class="answer-row">
-          <a id="yesBtn" class="btn btn-love btn-big" data-celebrate href="yes.html?via=letter">HAAN, banungi! 💖</a>
-          <button type="button" class="btn btn-no" data-dodge data-yes-url="yes.html?via=letter">Nahi 🙈</button>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script src="js/stickers.js?v=3" defer></script>
-  <script src="js/shared.js?v=3" defer></script>
-  <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      document.querySelectorAll(".letter-sheet p").forEach((p, i) => {
-        setTimeout(() => p.classList.add("show"), 450 + i * 700);
-      });
-
-      const stage = document.getElementById("boxStage"),
-            box = document.getElementById("giftBox"),
-            hint = document.getElementById("boxHint"),
-            zone = document.getElementById("propZone");
-      const open = () => {
-        if (box.classList.contains("open")) return;
-        box.classList.add("open");
-        stage.classList.add("open");
-        hint.textContent = "😍 ✨";
-        L1.chime();
-        setTimeout(() => {
-          zone.style.opacity = "1";
-          zone.style.transform = "none";
-          zone.style.pointerEvents = "auto";
-          zone.scrollIntoView({ behavior: "smooth", block: "center" });
-        }, 950);
-      };
-      box.addEventListener("click", open);
-      box.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
-      });
-    });
-  </script>
+<script src="js/stickers.js?v=4" defer></script>
+<script src="js/shared.js?v=5" defer></script>
+<script src="js/story.js?v=4" defer></script>
 </body>
 </html>

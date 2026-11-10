@@ -3,68 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Taaron Wali Raat 🌙</title>
+<title>The Rooftop Detour ✨</title>
 <meta name="theme-color" content="#2C2140">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z' fill='%23FF6B93' stroke='%234A2B3A' stroke-width='1.6'/%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Caveat:wght@500;600;700&family=Mali:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/style.css?v=3">
+<link rel="stylesheet" href="css/style.css?v=4">
 </head>
 <body class="page pg-stars" data-hearts="night">
+<div class="ambient-stars" data-starfield="55" aria-hidden="true"></div>
 
-  <div data-starfield="100" style="position:absolute;inset:0;pointer-events:none"></div>
 
-  <nav class="corner-nav">
-    <a class="chip" data-nav href="choose.html">← raasta badlo</a>
-  </nav>
+<nav class="corner-nav" aria-label="Story navigation"><a class="chip" data-nav href="choose.html">← another route</a></nav>
+<main class="scene story-scene">
+<div class="moon" aria-hidden="true"></div><div class="shooting-star" aria-hidden="true"></div><div class="hill" aria-hidden="true"></div>
+<div class="stack story-heading"><span class="eyebrow">the rooftop detour</span><h1 class="title">A good view.<br><span class="hl">Terrible concentration.</span></h1><p class="sub">We found the rooftop. You picked the music. I was supposed to be looking at the stars.</p></div>
+<section class="sticker-card story-card rooftop-card">
+  <div class="rooftop-doodle" aria-hidden="true">☾ &nbsp; ✦ &nbsp; ♫</div>
+  <h2 class="quiz-q">“You’re very quiet all of a sudden.”</h2>
+  <p class="story-prose">I could say I’m thinking about the universe. Very impressive. Very deep.</p>
+  <button class="btn btn-honey" type="button" data-reveal="rooftopTruth" data-after="Caught me 😌" aria-controls="rooftopTruth" aria-expanded="false">And the actual reason?</button>
+  <div id="rooftopTruth" class="revealed-note" aria-live="polite" hidden><p>You’re humming along to a song I didn’t know five minutes ago. Now I’m going to think of you every time it plays.</p><p class="story-aside">So yes. Very deep. Absolutely no chance I remember a single constellation.</p></div>
+</section>
+<a class="btn btn-love" data-nav href="invitation.html?via=stars">Before this song ends →</a>
+<a class="chip" data-nav href="choose.html">Take another detour</a>
+</main>
 
-  <main class="scene" data-parallax>
-    <div class="moon" data-depth=".3"></div>
-    <div class="shooting-star"></div>
-
-    <svg class="constellation" viewBox="0 0 120 96" data-depth=".2" aria-hidden="true">
-      <path class="cline" pathLength="400"
-        d="M60 78 C20 48 8 30 14 16 C20 4 40 4 60 20 C80 4 100 4 106 16 C112 30 100 48 60 78 Z"/>
-      <circle class="cdot" r="3" cx="60" cy="20"/>
-      <circle class="cdot" r="3" cx="26" cy="10" style="animation-delay:.4s"/>
-      <circle class="cdot" r="3" cx="12" cy="26" style="animation-delay:.8s"/>
-      <circle class="cdot" r="3.5" cx="60" cy="76" style="animation-delay:1.2s"/>
-      <circle class="cdot" r="3" cx="108" cy="26" style="animation-delay:1.6s"/>
-      <circle class="cdot" r="3" cx="94" cy="10" style="animation-delay:2s"/>
-    </svg>
-
-    <div class="hill"></div>
-
-    <div class="stack">
-      <span class="eyebrow">ENDING 2 · TAARON KI RAAT</span>
-
-      <h2 class="sticker-word" style="font-size:clamp(1.7rem,5vw,2.7rem)" aria-label="Tum aur main">
-        <span class="c2" style="--i:0">T</span><span class="c1" style="--i:1">U</span><span class="c4" style="--i:2">M</span><span
-        class="c3" style="--i:3">&nbsp;✦&nbsp;</span><span class="c1" style="--i:4">M</span><span class="c2" style="--i:5">A</span><span
-        class="c4" style="--i:6">I</span><span class="c1" style="--i:7">N</span>
-      </h2>
-
-      <div class="ring-stage" data-ring></div>
-
-      <div class="couple-row">
-        <div class="kneel" data-sticker="panda-kneel"></div>
-        <div class="shy" data-sticker="bear-hearteyes"></div>
-      </div>
-
-      <div class="proposal-zone sticker-card" style="position:relative">
-        <div class="tape"></div>
-        <p class="quiz-note" style="font-size:1.45rem">Maine shooting star se ek wish maangi thi… wish tum ho. ⭐</p>
-        <p class="proposal-q">In taaron ke neeche — will you be my <span class="hl">girlfriend</span>?</p>
-        <div class="answer-row">
-          <a id="yesBtn" class="btn btn-love btn-big" data-celebrate href="yes.html?via=stars">HAAN! Yes! 💖</a>
-          <button type="button" class="btn btn-no" data-dodge data-yes-url="yes.html?via=stars">Nahi 🙈</button>
-        </div>
-      </div>
-    </div>
-  </main>
-
-  <script src="js/stickers.js?v=3" defer></script>
-  <script src="js/shared.js?v=3" defer></script>
+<script src="js/stickers.js?v=4" defer></script>
+<script src="js/shared.js?v=5" defer></script>
+<script src="js/story.js?v=4" defer></script>
 </body>
 </html>

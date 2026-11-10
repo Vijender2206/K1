@@ -1,6 +1,6 @@
 /* ============================================================
    L1 shared engine — sounds, 3D ring builder, floating hearts,
-   dodging NO button, page transitions, confetti, parallax
+   page transitions, confetti, parallax
    ============================================================ */
 window.L1 = (function () {
   const RM = matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -9,7 +9,8 @@ window.L1 = (function () {
 
   /* ---------------- audio (all synthesized, no files) ---------------- */
   let ctx = null;
-  let muted = localStorage.getItem("l1-mute") === "1";
+  let muted = false;
+  try { muted = localStorage.getItem("l1-mute") === "1"; } catch { /* Sound still works without storage. */ }
   let melodyOn = false, melodyT = null;
 
   function ac() {
@@ -72,7 +73,7 @@ window.L1 = (function () {
     mute.textContent = muted ? "🔇" : "🔊";
     mute.addEventListener("click", () => {
       muted = !muted;
-      localStorage.setItem("l1-mute", muted ? "1" : "0");
+      try { localStorage.setItem("l1-mute", muted ? "1" : "0"); } catch { /* Keep the current preference in memory. */ }
       mute.textContent = muted ? "🔇" : "🔊";
       mute.setAttribute("aria-pressed", String(!muted));
       if (!muted) pop();
@@ -178,11 +179,10 @@ window.L1 = (function () {
     }
   }
 
-  /* ---------------- dodging NO button ---------------- */
-  const NO_LABELS = ["Are you sure? 🥺", "Soch lo phir se…", "Galat button, jaan 😤", "Nice try 😌"];
+  /* ---------------- playful runaway NO button ---------------- */
+  const NO_LABELS = ["Arre, missed me 😏", "Catch me first 🙈", "Itni jaldi? 😌", "Nice try 😏"];
   function makeDodger(btn) {
     let n = 0;
-    const yesUrl = btn.dataset.yesUrl || "yes.html";
     const surrender = () => {
       btn.classList.add("gave-up");
       btn.textContent = "Theek hai… YES hi sahi 🙈";
@@ -196,16 +196,20 @@ window.L1 = (function () {
       const zr = zone.getBoundingClientRect(), br = btn.getBoundingClientRect();
       const mx = Math.max(30, (zr.width - br.width) / 2 - 8);
       btn.style.transform = `translate(${rand(-mx, mx)}px, ${rand(-46, 46)}px) rotate(${rand(-8, 8)}deg)`;
-      btn.textContent = NO_LABELS[Math.min(n - 1, NO_LABELS.length - 1)];
+      btn.textContent = NO_LABELS[n - 1];
       const yes = document.getElementById("yesBtn");
-      if (yes) yes.style.transform = `scale(${1 + n * 0.08})`;
-      sad();
+      if (yes) {
+        const availableScale = Math.max(1, (innerWidth - 40) / yes.offsetWidth);
+        yes.style.transform = `scale(${Math.min(1 + n * 0.08, availableScale)})`;
+      }
+      pop();
     };
-    btn.addEventListener("pointerenter", (e) => { if (e.pointerType === "mouse") dodge(); });
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("pointerenter", e => { if (e.pointerType === "mouse") dodge(); });
+    btn.addEventListener("click", e => {
       e.preventDefault();
       if (btn.classList.contains("gave-up")) {
-        celebrate(btn, yesUrl);
+        const yes = document.getElementById("yesBtn");
+        celebrate(btn, btn.dataset.yesUrl || (yes && yes.getAttribute("href")) || "yes.html");
       } else dodge();
     });
   }
@@ -301,7 +305,7 @@ window.L1 = (function () {
     // page links with heart-wipe
     document.addEventListener("click", (e) => {
       const a = e.target.closest("a[data-nav]");
-      if (!a) return;
+      if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) return;
       e.preventDefault();
       go(a.getAttribute("href"));
     });
