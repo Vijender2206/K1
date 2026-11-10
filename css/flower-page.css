@@ -1,0 +1,47 @@
+/* K1 frame around the original M1 flower animation. */
+:root{--dark-color:#071c20;--bloom-paper:#FFFDF7;--bloom-pink:#FFB7CB}
+body.bloom-page{min-height:100vh;min-height:100svh;font-family:"Mali","Segoe Print",cursive;color:var(--bloom-paper)}
+.bloom-page main{width:100%;min-height:100svh}
+.bloom-stage{position:fixed;inset:0;overflow:hidden;pointer-events:none}
+.bloom-stage .night{background-image:radial-gradient(ellipse at 50% 85%,#1c4b454D,transparent 65%),radial-gradient(ellipse at top,#122E33,transparent 70%)}
+.flower-bed{position:absolute;left:50%;bottom:76px;width:0;height:0}
+.flower-bed .flowers{transform:scale(.68)}
+.bloom-nav{position:absolute;left:18px;top:18px;z-index:30}
+.bloom-back,.bloom-replay{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;
+  border:1px solid #FFB7CB70;border-radius:999px;background:#071C20CC;
+  padding:10px 18px;min-height:44px;color:var(--bloom-paper);text-decoration:none;
+  font:600 .95rem "Baloo 2","Segoe Print",cursive;cursor:pointer;
+  transition:background .2s,border-color .2s;
+}
+.bloom-back:hover,.bloom-replay:hover{background:#224239;border-color:var(--bloom-pink)}
+.bloom-page :focus-visible{outline:3px dashed var(--bloom-pink);outline-offset:5px}
+.bloom-heading{position:absolute;top:85px;left:20px;right:20px;text-align:center;z-index:20;pointer-events:none}
+.bloom-label{font:600 .72rem "Baloo 2","Segoe Print",cursive;letter-spacing:.18em;text-transform:uppercase;color:var(--bloom-pink)}
+.bloom-heading h1{font:800 clamp(2rem,5vw,3.3rem)/1.15 "Baloo 2","Segoe Print",cursive;margin:14px 0 12px}
+.bloom-heading h1 span{color:var(--bloom-pink)}
+.bloom-heading p{font-size:clamp(.88rem,2.4vw,1.05rem);line-height:1.7;color:#D2E0D9}
+.bloom-footer{position:fixed;left:20px;right:20px;bottom:18px;z-index:30;text-align:center}
+.bloom-footer p{font:600 clamp(1.15rem,3vw,1.55rem)/1.3 "Caveat","Segoe Print",cursive;color:var(--bloom-pink);margin-bottom:12px;text-shadow:0 2px 10px #071C20}
+.bloom-replay{font-size:.88rem;padding:8px 18px}
+.bloom-status{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+@media(max-width:600px){
+  .flower-bed{bottom:130px}
+  .flower-bed .flowers{transform:scale(1.3)}
+  .bloom-heading{top:95px}
+  .bloom-heading h1{font-size:clamp(1.9rem,8vw,2.5rem)}
+  .bloom-footer{left:16px;right:16px;bottom:max(18px,env(safe-area-inset-bottom))}
+  .bloom-footer p{max-width:23em;margin:0 auto 12px}
+}
+@media(max-height:650px) and (min-width:601px){
+  .bloom-heading{top:20px;left:230px;right:70px}
+  .bloom-heading h1{font-size:1.8rem;margin:8px 0}
+  .bloom-heading p{font-size:.82rem}
+  .flower-bed .flowers{transform:scale(.68)}
+}
+@media(prefers-reduced-motion:reduce){
+  .bloom-page *, .bloom-page *::before, .bloom-page *::after{
+    animation-delay:0s !important;animation-duration:.001s !important;
+    animation-iteration-count:1 !important;transition:none !important;
+  }
+}

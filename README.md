@@ -14,3 +14,7 @@ and eventually gives in, just like the original. Nothing is sent, booked, or col
 No build step or dependencies are required. Google Fonts are optional; local fallback
 fonts keep the pages usable offline. All illustrations and audio are generated locally
 with SVG, CSS, and Web Audio.
+
+The gift button beside the sound control opens `flowers.html`, a full-screen blooming
+flower surprise adapted from M1. Replay the bloom or return to the previous story page.
+Source attribution and the original license notices are in `licenses/`.

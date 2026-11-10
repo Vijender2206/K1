@@ -231,6 +231,25 @@ a{color:var(--berry-deep)}
 }
 #muteBtn:active{transform:translateY(3px);box-shadow:none}
 
+.gift-button{
+  position:fixed;top:14px;right:70px;z-index:60;
+  width:44px;height:44px;display:grid;place-items:center;
+  background:var(--paper);border:var(--line);border-radius:14px;
+  box-shadow:var(--pop-sm);text-decoration:none;
+  transition:transform .2s,background .2s;
+}
+.gift-button svg{width:33px;height:33px;stroke:var(--ink);stroke-width:2;stroke-linejoin:round}
+.gift-button:hover{transform:rotate(-8deg) translateY(-2px);background:var(--blush)}
+.gift-button:active{transform:translateY(3px);box-shadow:none}
+.gift-tooltip{
+  position:absolute;top:calc(100% + 12px);right:0;
+  padding:5px 12px;border:2px solid var(--ink);border-radius:999px;
+  color:var(--ink);background:var(--paper);white-space:nowrap;
+  font:700 .85rem var(--font-display);opacity:0;pointer-events:none;
+  transform:translateY(-4px);transition:opacity .2s,transform .2s;
+}
+.gift-button:hover .gift-tooltip,.gift-button:focus-visible .gift-tooltip{opacity:1;transform:none}
+
 /* ---------------------------------------------------------
    Ambient: clouds, floating hearts, sparkles
 --------------------------------------------------------- */

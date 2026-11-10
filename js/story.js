@@ -9,6 +9,20 @@
       try { sessionStorage.setItem("l1-" + key, value); } catch { /* Private browsing is fine. */ }
     },
   };
+  // A gift is a detour: keep the current beat even when the browser reloads on Back.
+  const pagePath = location.pathname + location.search;
+  let giftReturn = null;
+  try {
+    const snapshot = JSON.parse(saved.get("gift-return", "null"));
+    if (snapshot && snapshot.page === pagePath) {
+      giftReturn = snapshot;
+      saved.set("gift-return", "");
+    }
+  } catch { /* An unavailable or old snapshot simply starts the page normally. */ }
+  let banterSnapshot = () => null, lineSnapshot = () => null;
+  window.addEventListener("pageshow", event => {
+    if (event.persisted) saved.set("gift-return", "");
+  });
   const drinks = { chai: "Chai", coffee: "Coffee", cocoa: "Hot chocolate" };
   const plans = {
     garden: "A garden walk & a snack stop",
@@ -24,7 +38,7 @@
   document.querySelectorAll("[data-drink]").forEach(el => el.textContent = drinks[saved.get("drink", "chai")] || drinks.chai);
 
   // Small choices change the reply, never the reader's answer.
-  document.querySelectorAll("[data-choices]").forEach(group => {
+  document.querySelectorAll("[data-choices]").forEach((group, index) => {
     const output = document.getElementById(group.dataset.output);
     const buttons = [...group.querySelectorAll("button[data-reply]")];
     const select = button => {
@@ -40,17 +54,20 @@
       const initial = buttons.find(b => b.dataset.value === saved.get(group.dataset.save, "chai")) || buttons[0];
       select(initial);
     }
+    const restored = giftReturn?.choices?.[index];
+    if (Number.isInteger(restored) && buttons[restored]) select(buttons[restored]);
   });
 
-  document.querySelectorAll("[data-reveal]").forEach(button => {
+  document.querySelectorAll("[data-reveal]").forEach((button, index) => {
     const target = document.getElementById(button.dataset.reveal);
-    button.addEventListener("click", () => {
+    const reveal = () => {
       target.hidden = false;
       button.setAttribute("aria-expanded", "true");
       button.disabled = true;
       button.textContent = button.dataset.after || "There it is ♡";
-      L1.chime();
-    });
+    };
+    button.addEventListener("click", () => { reveal(); L1.chime(); });
+    if (giftReturn?.reveals?.includes(index)) reveal();
   });
 
   // Banter is a conversation with different beats, rather than an interview.
@@ -76,7 +93,8 @@
           ["I’m already judging you 😂", "Excellent. A discerning audience. This can only go beautifully."],
         ] },
     ];
-    let step = 0;
+    let step = 0, selected = -1;
+    if (Number.isInteger(giftReturn?.banter?.step)) step = Math.max(0, Math.min(scenes.length - 1, giftReturn.banter.step));
     const line = document.getElementById("banterLine");
     const aside = document.getElementById("banterAside");
     const options = document.getElementById("banterOptions");
@@ -91,20 +109,24 @@
       next.hidden = true;
       finish.hidden = true;
       options.replaceChildren();
+      selected = -1;
       document.getElementById("banterCount").textContent = `A little banter · ${step + 1} of ${scenes.length}`;
-      scene.options.forEach(([label, answer]) => {
+      scene.options.forEach(([label, answer], index) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = "btn btn-honey";
         button.textContent = label;
         button.setAttribute("aria-pressed", "false");
-        button.addEventListener("click", () => {
+        const select = () => {
+          selected = index;
           options.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b === button)));
           reply.textContent = answer;
           if (step < scenes.length - 1) next.hidden = false;
           else finish.hidden = false;
-        });
+        };
+        button.addEventListener("click", select);
         options.appendChild(button);
+        if (giftReturn?.banter?.step === step && giftReturn.banter.selected === index) select();
       });
     };
     next.addEventListener("click", () => {
@@ -114,6 +136,9 @@
       line.focus({ preventScroll: true });
     });
     render();
+    banterSnapshot = () => ({ step, selected });
+    // The one-time snapshot must not preselect answers on later steps.
+    if (giftReturn) giftReturn.banter = null;
   }
 
   const deck = document.getElementById("lineDeck");
@@ -126,6 +151,7 @@
       ["Are you the seat beside me on a long train ride?", "Because suddenly I’m less interested in getting there than in making the journey longer.", "Window seat is yours. I’m generous like that."],
     ];
     let current = 0;
+    if (Number.isInteger(giftReturn?.lines?.current)) current = Math.max(0, Math.min(lines.length - 1, giftReturn.lines.current));
     const setup = document.getElementById("lineSetup");
     const answer = document.getElementById("lineAnswer");
     const foot = document.getElementById("lineFoot");
@@ -157,22 +183,30 @@
       reveal.focus({ preventScroll: true });
     });
     render();
+    if (giftReturn?.lines?.revealed) {
+      answer.hidden = foot.hidden = false;
+      reveal.hidden = true;
+      reveal.setAttribute("aria-expanded", "true");
+      next.hidden = current === lines.length - 1;
+    }
+    lineSnapshot = () => ({ current, revealed: !answer.hidden });
   }
 
   const envelope = document.getElementById("env");
   if (envelope) {
-    const open = () => {
+    const open = (sound = true) => {
       if (envelope.classList.contains("open")) return;
       envelope.classList.add("open");
       envelope.setAttribute("aria-expanded", "true");
       document.body.classList.add("opened");
       envelope.querySelector(".env-hint").hidden = true;
-      L1.chime();
+      if (sound) L1.chime();
     };
     envelope.addEventListener("click", open);
     envelope.addEventListener("keydown", e => {
       if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); }
     });
+    if (giftReturn?.envelopeOpen) open(false);
   }
 
   document.querySelectorAll("[data-flower-row]").forEach(row => {
@@ -189,4 +223,16 @@
     L1.confetti(document.getElementById("confettiCanvas"));
     L1.startMelody();
   }
+
+  document.getElementById("giftBtn")?.addEventListener("click", event => {
+    if (event.button !== 0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey) return;
+    saved.set("gift-return", JSON.stringify({
+      page: pagePath, scroll: scrollY,
+      banter: banterSnapshot(), lines: lineSnapshot(),
+      envelopeOpen: !!envelope?.classList.contains("open"),
+      choices: [...document.querySelectorAll("[data-choices]")].map(group => [...group.querySelectorAll("button[data-reply]")].findIndex(b => b.getAttribute("aria-pressed") === "true")),
+      reveals: [...document.querySelectorAll("[data-reveal]")].flatMap((button, index) => button.getAttribute("aria-expanded") === "true" ? [index] : []),
+    }));
+  });
+  if (giftReturn) requestAnimationFrame(() => scrollTo(0, giftReturn.scroll || 0));
 })();

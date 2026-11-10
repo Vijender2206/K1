@@ -80,6 +80,22 @@ window.L1 = (function () {
     });
     document.body.appendChild(mute);
 
+    const gift = document.createElement("a");
+    gift.id = "giftBtn";
+    gift.className = "gift-button";
+    gift.setAttribute("data-nav", "");
+    gift.setAttribute("aria-label", "Open a little gift for you");
+    gift.title = "A little gift for you";
+    const from = (location.pathname.split("/").pop() || "index.html") + location.search;
+    gift.href = "flowers.html?from=" + encodeURIComponent(from);
+    gift.innerHTML = `<svg viewBox="0 0 48 48" aria-hidden="true">
+      <path d="M8 21h32v21H8z" fill="#FFB7CB"/>
+      <path d="M5 14h38v9H5z" fill="#FF6B93"/>
+      <path d="M21 14h6v28h-6z" fill="#FFE9A8"/>
+      <path d="M24 14C8 15 9 2 17 6c4 2 7 8 7 8Zm0 0C40 15 39 2 31 6c-4 2-7 8-7 8Z" fill="#FFE9A8"/>
+    </svg><span class="gift-tooltip">psst… for you</span>`;
+    document.body.appendChild(gift);
+
     const wipe = document.createElement("div");
     wipe.id = "wipe";
     wipe.innerHTML = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21C7 16.5 2 12.5 2 8a5 5 0 0 1 9-3 5 5 0 0 1 9 3c0 4.5-5 8.5-10 13Z" fill="#fff"/></svg>`;
@@ -298,7 +314,7 @@ window.L1 = (function () {
 
     // soft pop on every button press
     document.addEventListener("click", (e) => {
-      const t = e.target.closest(".btn, .chip, .door");
+      const t = e.target.closest(".btn, .chip, .door, .gift-button");
       if (t && !t.hasAttribute("data-celebrate") && !t.hasAttribute("data-dodge")) pop();
     });
 
